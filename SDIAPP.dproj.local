@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2016/01/27 09:47:25.668,=C:\Users\dbias\Documents\delphi-test\Unit1.pas</Transaction>
+    <Transaction>2016/01/27 09:47:40.434,C:\Users\dbias\Documents\delphi-test\TContatto.pas=C:\Users\dbias\Documents\delphi-test\Unit1.pas</Transaction>
+    <Transaction>2016/01/27 10:04:00.370,C:\Users\dbias\Documents\delphi-test\TContatti.pas=C:\Users\dbias\Documents\delphi-test\TContatto.pas</Transaction>
+    <Transaction>2016/01/27 10:04:20.818,=C:\Users\dbias\Documents\delphi-test\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>
