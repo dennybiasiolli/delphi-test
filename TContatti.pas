@@ -8,23 +8,28 @@ uses
 type
   DettagliContatto = class
     private
-      sIndirizzo: string;
+      _id: Integer;
       sTipoIndirizzo: string;
+      sIndirizzo: string;
     public
-      constructor Create(indirizzo, tipoIndirizzo: string);
-      property Indirizzo: string read sIndirizzo write sIndirizzo;
+      constructor Create(id: Integer; tipoIndirizzo: string; indirizzo: string);
+      property id: Integer read _id write _id;
       property TipoIndirizzo: string read sTipoIndirizzo write sTipoIndirizzo;
+      property Indirizzo: string read sIndirizzo write sIndirizzo;
+      function ToString(): string;
   end;
 
 type
   Contatto = class
     private
+      _id: Integer;
       sNome: string;
       sCognome: string;
       lDettagliContatto: TObjectList<DettagliContatto>;
     protected
     public
-      constructor Create(nome, cognome: string);
+      constructor Create(id: Integer; nome: string; cognome: string);
+      property id: Integer read _id write _id;
       property Nome: string read sNome write sNome;
       property Cognome: string read sCognome write sNome;
       property Dettagli: TObjectList<DettagliContatto> read lDettagliContatto write lDettagliContatto;
@@ -32,10 +37,12 @@ type
   end;
 
 implementation
-  constructor Contatto.Create(nome: string; cognome: string);
+  constructor Contatto.Create(id: Integer; nome: string; cognome: string);
   begin
+    _id := id;
     sNome := nome;
     sCognome := cognome;
+    lDettagliContatto := TObjectList<DettagliContatto>.Create();
   end;
 
   function Contatto.ToString(): string;
@@ -44,10 +51,16 @@ implementation
   end;
 
 
-  constructor DettagliContatto.Create(indirizzo: string; tipoIndirizzo: string);
+  constructor DettagliContatto.Create(id: Integer; tipoIndirizzo: string; indirizzo: string);
   begin
-    sIndirizzo := indirizzo;
+    _id := id;
     sTipoIndirizzo := tipoIndirizzo;
+    sIndirizzo := indirizzo;
+  end;
+
+  function DettagliContatto.ToString(): string;
+  begin
+    Result := sTipoIndirizzo;
   end;
 
 end.

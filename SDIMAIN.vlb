@@ -1,0 +1,16 @@
+﻿[(TMenuItem)]
+Coordinates=12,143,88,36
+
+[Label2]
+Coordinates=184,10,53,58
+
+[Label1]
+Coordinates=121,10,53,58
+
+[listContatti]
+Coordinates=10,10,101,124
+Visible=True
+
+[]
+Coordinates=227,1,91,36
+
