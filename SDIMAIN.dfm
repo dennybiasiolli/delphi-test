@@ -120,7 +120,6 @@ object SDIAppForm: TSDIAppForm
     Sorted = True
     TabOrder = 0
     OnClick = listContattiClick
-    ExplicitHeight = 236
   end
   object listDettagliContatto: TListBox
     Left = 219
@@ -139,6 +138,7 @@ object SDIAppForm: TSDIAppForm
     Enabled = False
     MaxLength = 25
     TabOrder = 2
+    OnChange = txtContattoChange
   end
   object txtNome: TEdit
     Left = 223

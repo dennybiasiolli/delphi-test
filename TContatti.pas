@@ -31,7 +31,7 @@ type
       constructor Create(id: Integer; nome: string; cognome: string);
       property id: Integer read _id write _id;
       property Nome: string read sNome write sNome;
-      property Cognome: string read sCognome write sNome;
+      property Cognome: string read sCognome write sCognome;
       property Dettagli: TObjectList<DettagliContatto> read lDettagliContatto write lDettagliContatto;
       function ToString(): string;
   end;

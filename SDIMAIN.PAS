@@ -40,6 +40,7 @@ type
 var
   SDIAppForm: TSDIAppForm;
 
+  const STR_VOCE_ELENCO: string = '- ';
   const STR_NUOVO_INSERIMENTO: string = '- <NUOVO>';
 
 implementation
@@ -55,7 +56,7 @@ begin
   contattoSelezionato := Contatto(listContatti.Items.Objects[listContatti.ItemIndex]);
   contattoSelezionato.Cognome := txtCognome.Text;
   contattoSelezionato.Nome := txtNome.Text;
-  listContatti.Items[listContatti.ItemIndex] := contattoSelezionato.ToString();
+  listContatti.Items[listContatti.ItemIndex] := STR_VOCE_ELENCO + contattoSelezionato.ToString();
   btnSalvaContatto.Enabled := False;
 end;
 
@@ -69,10 +70,10 @@ begin
   contattoTest.Dettagli.Add(DettagliContatto.Create(1, 'Indirizzo Casa', 'Via Roma 15'));
   contattoTest.Dettagli.Add(DettagliContatto.Create(2, 'Indirizzo Lavoro', 'Via Torino 68'));
   //contattoTest.Dettagli.Add(DettagliContatto.Create('Via Roma 12', 'Casa'));
-  listContatti.Items.AddObject('- ' + contattoTest.ToString(), contattoTest);
+  listContatti.Items.AddObject(STR_VOCE_ELENCO + contattoTest.ToString(), contattoTest);
 
   contattoTest := Contatto.Create(2, 'Luigi', 'Bianchi');
-  listContatti.Items.AddObject('- ' + contattoTest.ToString(), contattoTest);
+  listContatti.Items.AddObject(STR_VOCE_ELENCO + contattoTest.ToString(), contattoTest);
 end;
 
 procedure TSDIAppForm.listContattiClick(Sender: TObject);
@@ -98,7 +99,7 @@ begin
     txtCognome.Text := contattoSelezionato.Cognome;
     txtNome.Text := contattoSelezionato.Nome;
     for i := 0 to contattoSelezionato.Dettagli.Count - 1 do
-      listDettagliContatto.Items.AddObject('- ' + contattoSelezionato.Dettagli.Items[i].ToString(), contattoSelezionato.Dettagli.Items[i]);
+      listDettagliContatto.Items.AddObject(STR_VOCE_ELENCO + contattoSelezionato.Dettagli.Items[i].ToString(), contattoSelezionato.Dettagli.Items[i]);
   end
   else
   begin
