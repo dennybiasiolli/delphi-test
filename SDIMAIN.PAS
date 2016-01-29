@@ -54,6 +54,7 @@ procedure TSDIAppForm.btnSalvaContattoClick(Sender: TObject);
 var
   objSelezionato: TObject;
   contattoSelezionato: Contatto;
+  indexInserito: Integer;
 begin
   objSelezionato := listContatti.Items.Objects[listContatti.ItemIndex];
   if(objSelezionato is Contatto) then
@@ -67,6 +68,9 @@ begin
   begin
     contattoSelezionato := Contatto.Create(listContatti.ItemIndex, txtNome.Text, txtCognome.Text);
     listContatti.AddItem(STR_VOCE_ELENCO + contattoSelezionato.ToString(), contattoSelezionato);
+    indexInserito := listContatti.Items.IndexOfObject(contattoSelezionato);
+    listContatti.ItemIndex := indexInserito;
+    SelectItemListContatti(indexInserito);
   end;
   btnSalvaContatto.Enabled := False;
 end;
