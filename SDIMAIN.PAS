@@ -27,6 +27,7 @@ type
     Label10: TLabel;
     Label11: TLabel;
     procedure FormCreate(Sender: TObject);
+    procedure SelectItemListContatti(itemIndex: Integer);
     procedure listContattiClick(Sender: TObject);
     procedure listDettagliContattoClick(Sender: TObject);
     procedure txtContattoChange(Sender: TObject);
@@ -51,12 +52,22 @@ uses About;
 
 procedure TSDIAppForm.btnSalvaContattoClick(Sender: TObject);
 var
+  objSelezionato: TObject;
   contattoSelezionato: Contatto;
 begin
-  contattoSelezionato := Contatto(listContatti.Items.Objects[listContatti.ItemIndex]);
-  contattoSelezionato.Cognome := txtCognome.Text;
-  contattoSelezionato.Nome := txtNome.Text;
-  listContatti.Items[listContatti.ItemIndex] := STR_VOCE_ELENCO + contattoSelezionato.ToString();
+  objSelezionato := listContatti.Items.Objects[listContatti.ItemIndex];
+  if(objSelezionato is Contatto) then
+  begin
+    contattoSelezionato := Contatto(listContatti.Items.Objects[listContatti.ItemIndex]);
+    contattoSelezionato.Cognome := txtCognome.Text;
+    contattoSelezionato.Nome := txtNome.Text;
+    listContatti.Items[listContatti.ItemIndex] := STR_VOCE_ELENCO + contattoSelezionato.ToString();
+  end
+  else
+  begin
+    contattoSelezionato := Contatto.Create(listContatti.ItemIndex, txtNome.Text, txtCognome.Text);
+    listContatti.AddItem(STR_VOCE_ELENCO + contattoSelezionato.ToString(), contattoSelezionato);
+  end;
   btnSalvaContatto.Enabled := False;
 end;
 
@@ -76,7 +87,7 @@ begin
   listContatti.Items.AddObject(STR_VOCE_ELENCO + contattoTest.ToString(), contattoTest);
 end;
 
-procedure TSDIAppForm.listContattiClick(Sender: TObject);
+procedure TSDIAppForm.SelectItemListContatti(itemIndex: Integer);
 var
   objSelezionato: TObject;
   contattoSelezionato: Contatto;
@@ -108,6 +119,11 @@ begin
   end;
   txtNome.Enabled := True;
   txtCognome.Enabled := True;
+end;
+
+procedure TSDIAppForm.listContattiClick(Sender: TObject);
+begin
+  SelectItemListContatti(listContatti.ItemIndex);
 end;
 
 procedure TSDIAppForm.listDettagliContattoClick(Sender: TObject);
