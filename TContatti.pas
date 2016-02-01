@@ -6,16 +6,18 @@ uses
   System.Generics.Collections;
 
 type
-  DettagliContatto = class
+  DettaglioContatto = class
     private
       _id: Integer;
-      sTipoIndirizzo: string;
+      sTipoDettaglio: string;
       sIndirizzo: string;
+      sTelefono: string;
     public
-      constructor Create(id: Integer; tipoIndirizzo: string; indirizzo: string);
+      constructor Create(id: Integer; tipoDettaglio, indirizzo, telefono: string);
       property id: Integer read _id write _id;
-      property TipoIndirizzo: string read sTipoIndirizzo write sTipoIndirizzo;
+      property TipoDettaglio: string read sTipoDettaglio write sTipoDettaglio;
       property Indirizzo: string read sIndirizzo write sIndirizzo;
+      property Telefono: string read sTelefono write sTelefono;
       function ToString(): string;
   end;
 
@@ -25,14 +27,14 @@ type
       _id: Integer;
       sNome: string;
       sCognome: string;
-      lDettagliContatto: TObjectList<DettagliContatto>;
+      lDettagliContatto: TObjectList<DettaglioContatto>;
     protected
     public
       constructor Create(id: Integer; nome: string; cognome: string);
       property id: Integer read _id write _id;
       property Nome: string read sNome write sNome;
       property Cognome: string read sCognome write sCognome;
-      property Dettagli: TObjectList<DettagliContatto> read lDettagliContatto write lDettagliContatto;
+      property Dettagli: TObjectList<DettaglioContatto> read lDettagliContatto write lDettagliContatto;
       function ToString(): string;
   end;
 
@@ -42,7 +44,7 @@ implementation
     _id := id;
     sNome := nome;
     sCognome := cognome;
-    lDettagliContatto := TObjectList<DettagliContatto>.Create();
+    lDettagliContatto := TObjectList<DettaglioContatto>.Create();
   end;
 
   function Contatto.ToString(): string;
@@ -51,16 +53,17 @@ implementation
   end;
 
 
-  constructor DettagliContatto.Create(id: Integer; tipoIndirizzo: string; indirizzo: string);
+  constructor DettaglioContatto.Create(id: Integer; tipoDettaglio, indirizzo, telefono: string);
   begin
     _id := id;
-    sTipoIndirizzo := tipoIndirizzo;
+    sTipoDettaglio := tipoDettaglio;
     sIndirizzo := indirizzo;
+    sTelefono := telefono;
   end;
 
-  function DettagliContatto.ToString(): string;
+  function DettaglioContatto.ToString(): string;
   begin
-    Result := sTipoIndirizzo;
+    Result := sTipoDettaglio;
   end;
 
 end.
